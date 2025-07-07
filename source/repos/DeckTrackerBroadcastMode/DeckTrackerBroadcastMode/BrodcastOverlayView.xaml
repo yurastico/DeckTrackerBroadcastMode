@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="DeckTrackerBroadcastMode.BroadcastOverlayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeckTrackerBroadcastMode" xmlns:local1="clr-namespace:Hearthstone_Deck_Tracker;assembly=HearthstoneDeckTracker"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50" Width="50" Height="50">
+    <Grid>
+        
+        <Ellipse Width="50" Height="50"
+             Stroke="#493a36" StrokeThickness="3" 
+                 >
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources/cardsRemainingPlaceholder.png"
+                        Stretch="UniformToFill"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <local1:OutlinedTextBlock x:Name="CardRemainingCounter" Text="30"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+                                  StrokeWidth="3"
+                                  FontSize="28"
+                                  FontWeight="Bold"
+                                  Height="50"
+                                  Width="50"
+                                  TextAlignment="Center"
+                                  FontFamily="pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources\belwe-bold-bt.ttf"
+
+            Fill="White"/>
+    </Grid>
+
+</UserControl>
