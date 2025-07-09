@@ -21,7 +21,8 @@ namespace DeckTrackerBroadcastMode
     /// </summary>
     public partial class BroadcastOverlayView : UserControl
     {
-        private bool isLocal;
+        public bool isLocal { get; }
+        
         public BroadcastOverlayView(bool isLocal)
         {
             this.isLocal = isLocal;
@@ -32,8 +33,23 @@ namespace DeckTrackerBroadcastMode
 
         public void UpdateText(string text)
         {
+
             this.CardRemainingCounter.Text = text;
             UpdatePosition();
+        }
+
+        public void SetFatigueOverlay()
+        {
+            var newImageUri = new Uri("pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources/fatigue.png");
+            this.OverlayImage.ImageSource = new BitmapImage(newImageUri);
+            
+        }
+
+        public void SetCardCounterOverlay()
+        {
+            var newImageUri = new Uri("pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources/cardsRemainingPlaceholder.png");
+            this.OverlayImage.ImageSource = new BitmapImage(newImageUri);
+
         }
 
         private double ScreenRatio => (4.0 / 3.0) / (Core.OverlayCanvas.Width / Core.OverlayCanvas.Height);
@@ -63,7 +79,7 @@ namespace DeckTrackerBroadcastMode
 
         public void Hide()
         {
-            this.Opacity = 100;
+            this.Opacity = 0;
             this.Visibility = Visibility.Hidden;
         }
 

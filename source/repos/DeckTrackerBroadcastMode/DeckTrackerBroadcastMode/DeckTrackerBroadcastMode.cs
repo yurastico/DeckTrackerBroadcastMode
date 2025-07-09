@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Hearthstone_Deck_Tracker.Hearthstone;
+using Hearthstone_Deck_Tracker;
+using Core = Hearthstone_Deck_Tracker.API.Core;
 
 namespace DeckTrackerBroadcastMode
 {
@@ -19,11 +21,12 @@ namespace DeckTrackerBroadcastMode
 
         public string Author => "vRestrita";
 
-        Version IPlugin.Version => new Version(1, 0, 0);
+        Version IPlugin.Version => new Version(1, 0, 1);
 
         private List<UIElement> _displayElements;
         private List<BroadcastEventsHandler> _items;
         private HashSet<UIElement> _hiddenElements;
+        private bool _hidingCardMark = false;
 
         void IPlugin.OnButtonPress()
         {
@@ -33,6 +36,12 @@ namespace DeckTrackerBroadcastMode
 
         private void hideDeckTracker()
         {
+            if (!Config.Instance.HideOpponentCardMarks)
+            {
+                _hidingCardMark = true;
+                Config.Instance.HideOpponentCardMarks = true;
+                
+            }
 
             foreach (UIElement element in Core.OverlayCanvas.Children)
             {
@@ -89,6 +98,12 @@ namespace DeckTrackerBroadcastMode
         
         private void ShowDeckTracker()
         {
+            if (_hidingCardMark)
+            {
+                Config.Instance.HideOpponentCardMarks = false;
+                _hidingCardMark = false;
+            }
+
             foreach (UIElement element in _hiddenElements)
             {
                 element.Opacity = 100;
@@ -119,7 +134,7 @@ namespace DeckTrackerBroadcastMode
                 Core.OverlayCanvas.Children.Remove(element);
     
             }
-            _hiddenElements.Clear();
+            
             _displayElements.Clear();
             _items.Clear();
         }

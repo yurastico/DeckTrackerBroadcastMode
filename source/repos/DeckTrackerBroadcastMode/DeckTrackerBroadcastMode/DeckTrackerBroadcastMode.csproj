@@ -70,12 +70,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Ressources\belwe-bold-bt.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\cardsRemainingPlaceholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\fatigue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

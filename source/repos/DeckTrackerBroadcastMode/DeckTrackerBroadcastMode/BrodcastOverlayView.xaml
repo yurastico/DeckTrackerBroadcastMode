@@ -12,8 +12,8 @@
              Stroke="#493a36" StrokeThickness="3" 
                  >
             <Ellipse.Fill>
-                <ImageBrush ImageSource="pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources/cardsRemainingPlaceholder.png"
-                        Stretch="UniformToFill"/>
+                <ImageBrush x:Name="OverlayImage" ImageSource="pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources/cardsRemainingPlaceholder.png"
+                        Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
         <local1:OutlinedTextBlock x:Name="CardRemainingCounter" Text="30"
@@ -27,7 +27,16 @@
                                   TextAlignment="Center"
                                   FontFamily="pack://application:,,,/DeckTrackerBroadcastMode;component/Ressources\belwe-bold-bt.ttf"
 
-            Fill="White"/>
+            Fill="White" RenderTransformOrigin="0.5,0.5">
+            <local1:OutlinedTextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-1.381"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local1:OutlinedTextBlock.RenderTransform>
+        </local1:OutlinedTextBlock>
     </Grid>
 
 </UserControl>

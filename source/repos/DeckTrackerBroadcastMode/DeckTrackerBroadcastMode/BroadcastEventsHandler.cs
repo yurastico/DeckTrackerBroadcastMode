@@ -15,6 +15,7 @@ namespace DeckTrackerBroadcastMode
     internal class BroadcastEventsHandler
     {
         private BroadcastOverlayView view;
+        private bool isCountingCards = true;
         private bool isLocal;
         
         
@@ -44,7 +45,7 @@ namespace DeckTrackerBroadcastMode
         }
         internal void InMenu()
         {
-            view.Opacity = 0;
+          
             view.Hide();
         }
 
@@ -63,11 +64,30 @@ namespace DeckTrackerBroadcastMode
             }
 
            
-            int playerCardsRemaining = this.player.DeckCount;
+            if (this.player.DeckCount > 0)
+            {
+                if (!isCountingCards)
+                {
+                    view.SetCardCounterOverlay();
+                }
+                isCountingCards = true;
+                int playerCardsRemaining = this.player.DeckCount;
+                view.UpdateText(playerCardsRemaining.ToString());
+            }
+            else
+            {
+                if (isCountingCards)
+                {
+                    view.SetFatigueOverlay();
+                }
+                isCountingCards = false;
+                
 
-            view.UpdateText(playerCardsRemaining.ToString());
+                int fatigueCounter = this.player.Fatigue + 1;
+                view.UpdateText(fatigueCounter.ToString());
 
-            
+            }
+ 
             view.Show();
         }
 
