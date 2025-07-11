@@ -21,7 +21,7 @@ namespace DeckTrackerBroadcastMode
 
         public string Author => "vRestrita";
 
-        Version IPlugin.Version => new Version(1, 0, 1);
+        Version IPlugin.Version => new Version(1, 0, 2);
 
         private List<UIElement> _displayElements;
         private List<BroadcastEventsHandler> _items;
@@ -40,6 +40,9 @@ namespace DeckTrackerBroadcastMode
             {
                 _hidingCardMark = true;
                 Config.Instance.HideOpponentCardMarks = true;
+                Config.Instance.HideOpponentCardAge = true;
+                Config.Save();
+                
                 
             }
 
@@ -101,6 +104,8 @@ namespace DeckTrackerBroadcastMode
             if (_hidingCardMark)
             {
                 Config.Instance.HideOpponentCardMarks = false;
+                Config.Instance.HideOpponentCardAge = false;
+                Config.Save();
                 _hidingCardMark = false;
             }
 
